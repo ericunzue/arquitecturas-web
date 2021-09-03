@@ -1,0 +1,7 @@
+package daoInterface;
+
+import pojo.Factura;
+
+public interface FacturaDao extends CrudDao<Factura> {
+
+}
