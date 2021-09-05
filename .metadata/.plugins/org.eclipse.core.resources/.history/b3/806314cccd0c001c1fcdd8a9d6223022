@@ -1,0 +1,12 @@
+package daoInterface;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import pojo.Cliente;
+
+public interface ClienteDao extends InCrudDao<Cliente> {
+
+	List<Cliente> getClientByBilling() throws SQLException;
+
+}

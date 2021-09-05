@@ -1,0 +1,17 @@
+package factories;
+
+import daoInterface.InClienteDao;
+import daoInterface.InFacturaDao;
+import daoInterface.InProductoDao;
+
+public abstract class Factory {
+	public static Factory getInstance(String classname) {
+		return null;
+
+
+	}
+
+	abstract InClienteDao getClienteDao();
+	abstract InFacturaDao getFacturaDao();
+	abstract InProductoDao getProducotDao();
+}

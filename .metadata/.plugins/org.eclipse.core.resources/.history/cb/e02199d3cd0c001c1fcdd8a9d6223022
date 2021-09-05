@@ -1,0 +1,33 @@
+package factory;
+
+import dao.MySqlClienteDao;
+import dao.MySqlFacturaDao;
+import dao.MySqlProductoDao;
+import daoInterface.ClienteDao;
+import daoInterface.InFacturaDao;
+import daoInterface.InProductoDao;
+
+public class MySqlFactory extends Factory {
+
+	@Override
+	public ClienteDao getClienteDao() {
+		// TODO Auto-generated method stub
+		return new MySqlClienteDao();
+	}
+
+	@Override
+	public InFacturaDao getFacturaDao() {
+		// TODO Auto-generated method stub
+		return new MySqlFacturaDao();
+	}
+
+	@Override
+	public InProductoDao getProducotDao() {
+		// TODO Auto-generated method stub
+		return new MySqlProductoDao();
+	}
+
+
+
+
+}

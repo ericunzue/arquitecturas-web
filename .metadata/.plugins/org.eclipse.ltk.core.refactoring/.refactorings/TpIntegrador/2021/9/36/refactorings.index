@@ -1,0 +1,34 @@
+1630502708968	Delete element
+1630503605719	Delete element
+1630612154146	Rename type 'ClienteDao'
+1630612189211	Rename type 'ProductoDao'
+1630612200911	Rename type 'FacturaDao'
+1630612634146	Delete elements
+1630612838740	Rename package 'conexion'
+1630613590183	Rename package 'daoInterfaces'
+1630614168141	Delete element
+1630614201674	Move compilation unit
+1630614214032	Copy package
+1630614219192	Delete element
+1630614227246	Move compilation unit
+1630614232880	Delete element
+1630616804546	Rename package 'pojo'
+1630643985388	Rename type 'SqlDaoFactory'
+1630644005218	Rename type 'DaoFactory'
+1630646335195	Rename package 'factories'
+1630647142710	Delete element
+1630647172553	Rename package 'entities'
+1630676531077	Rename type 'SqlClienteDao'
+1630676543909	Rename type 'SqlFacturaDao'
+1630676552782	Rename type 'SqlProductoDao'
+1630676598553	Rename type 'SqlFactory'
+1630677057063	Rename type 'SqlConnection'
+1630683850240	Rename type 'InClienteDao'
+1630683857494	Rename type 'InCrudDao'
+1630683870018	Rename type 'InFacturaDao'
+1630683877965	Rename type 'InProductoDao'
+1630683900817	Rename type 'MySqlClienteDao'
+1630683913903	Rename type 'MySqlProductoDao'
+1630683923305	Rename type 'MySqlFacturaDao'
+1630791326144	Delete element
+1630791436225	Delete element

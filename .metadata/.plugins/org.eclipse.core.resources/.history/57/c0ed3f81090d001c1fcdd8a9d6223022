@@ -1,0 +1,96 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import connection.MySqlConnection;
+import daoInterface.ProductoDao;
+import pojo.Producto;
+
+public class MySqlImplProductoDao implements ProductoDao {
+
+	Connection conn = MySqlConnection.getConnection();
+
+
+	public MySqlImplProductoDao() {
+		super();
+		createTable();
+	}
+
+	private void createTable() {
+
+		String sql = "CREATE TABLE IF NOT EXISTS producto(" + "id INT NOT NULL AUTO_INCREMENT,"
+				+ "nombre VARCHAR(500)," + "valor FLOAT(6)," + "PRIMARY KEY (id))";
+
+		try {
+			conn.prepareStatement(sql).execute();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+	@Override
+	public void create(Producto producto) throws SQLException {
+		String sql = "INSERT INTO producto (nombre, valor) VALUES (?,?)";
+		int id =0;
+
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, producto.getNombre());
+			ps.setFloat(2, producto.getValor());
+			ps.executeUpdate();
+			ps.close();
+			conn.commit();
+			System.out.println("Insert Product successfull");
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		String sql = "DELETE FROM producto WHERE id=?";
+		PreparedStatement ps;
+		try {
+
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			ps.close();
+			conn.commit();
+			System.out.println("True");
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+
+	}
+
+	@Override
+	public Producto get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Producto> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto getProductHighestCollection() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

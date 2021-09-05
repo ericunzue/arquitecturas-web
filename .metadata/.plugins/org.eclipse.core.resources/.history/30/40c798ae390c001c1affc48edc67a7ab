@@ -1,0 +1,7 @@
+package daoInterface;
+
+import entities.Producto;
+
+public interface InProductoDao extends InCrudDao<Producto> {
+
+}

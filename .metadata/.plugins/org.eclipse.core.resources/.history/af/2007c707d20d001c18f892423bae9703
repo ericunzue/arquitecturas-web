@@ -1,0 +1,108 @@
+package dao;
+
+
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import connection.MySqlConnection;
+import daoInterface.FacturaDao;
+import pojo.Factura;
+
+public class MySqlImplFacturaDao implements FacturaDao{
+
+	private Connection conn = MySqlConnection.getConnection();
+
+	public  MySqlImplFacturaDao() {
+		this.createTable();
+//		this.createFacturas();
+
+	}
+
+
+	private void createTable() {
+
+		String create = "CREATE TABLE IF NOT EXISTS factura (idFactura INT NOT NULL,"
+				+ "idCliente INT NOT NULL,"+ "PRIMARY KEY (idFactura),"
+				+ "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente))";
+		try {
+			conn.prepareStatement(create).execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+	@Override
+	public void create(Factura factura)  {
+		String sql = "INSERT INTO factura (idFactura, idCliente) VALUES (?,?)";
+		PreparedStatement ps;
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, factura.getIdFactura());
+			ps.setInt(2, factura.getIdCliente());
+			ps.executeUpdate();
+			ps.close();
+			conn.commit();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+
+	@SuppressWarnings("deprecation")
+	public void createFacturas() {
+		CSVParser parser;
+
+		try {
+			parser = CSVFormat.DEFAULT.withHeader().parse(new FileReader("archivosCsv/facturas.csv"));
+			for(CSVRecord row: parser) {
+				Factura f = new Factura();
+				f.setIdFactura(Integer.parseInt(row.get("idFactura")));
+				f.setIdCliente(Integer.parseInt(row.get("idCliente")));
+				this.create(f);
+
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+
+
+
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Factura get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Factura> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

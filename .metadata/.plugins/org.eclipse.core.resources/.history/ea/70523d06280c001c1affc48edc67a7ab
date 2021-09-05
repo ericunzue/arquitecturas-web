@@ -1,0 +1,10 @@
+package daoInterfaces;
+
+public interface InCrudDao<T> {
+	void create(T entidades) throws SQLException;
+	boolean delete(int id) throws SQLException;
+	T get(int id) throws SQLException;
+	List<T> getAll() throws SQLException;
+
+
+}

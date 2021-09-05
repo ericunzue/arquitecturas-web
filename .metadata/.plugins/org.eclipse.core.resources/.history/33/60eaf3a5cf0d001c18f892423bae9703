@@ -1,0 +1,44 @@
+package dao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import daoInterface.FacturaProductoDao;
+import pojo.FacturaProducto;
+
+public class MySqlImplFacturaProductoDao implements FacturaProductoDao {
+
+
+	public MySqlImplFacturaProductoDao() {
+
+	}
+
+	@Override
+	public void create(FacturaProducto entities) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public FacturaProducto get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<FacturaProducto> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+
+}

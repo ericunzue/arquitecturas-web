@@ -1,0 +1,10 @@
+package com.axample.dao;
+
+public interface CRUDDao <T,K> {
+
+    void create(T t);
+    T get(K id);
+    void update(T t);
+    void delete(T t);
+
+}

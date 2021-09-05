@@ -31,6 +31,12 @@ public class Factura {
 		this.idCliente = idCliente;
 	}
 
+	@Override
+	public String toString() {
+		return "Factura [idFactura=" + idFactura + ", idCliente=" + idCliente
+				+ "]";
+	}
+
 
 
 }

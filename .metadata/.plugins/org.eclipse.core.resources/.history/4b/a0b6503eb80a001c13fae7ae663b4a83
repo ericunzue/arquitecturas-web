@@ -1,0 +1,5 @@
+package com.axample.dao;
+
+public interface PersonaDAOInterface {
+
+}

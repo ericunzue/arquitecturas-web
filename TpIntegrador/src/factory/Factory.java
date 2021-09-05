@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import daoInterface.ClienteDao;
 import daoInterface.FacturaDao;
+import daoInterface.FacturaProductoDao;
 import daoInterface.ProductoDao;
 
 public abstract class Factory {
@@ -32,5 +33,6 @@ public abstract class Factory {
 
 	public abstract ClienteDao getClienteDao();
 	public abstract FacturaDao getFacturaDao();
-	public abstract ProductoDao getProducotDao();
+	public abstract ProductoDao getProductoDao();
+	public abstract FacturaProductoDao getFacturaProductoDao();
 }

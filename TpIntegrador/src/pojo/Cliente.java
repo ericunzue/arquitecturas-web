@@ -10,8 +10,9 @@ public class Cliente {
 		super();
 	}
 
-	public Cliente( String nombre, String email) {
+	public Cliente(int idCliente, String nombre, String email) {
 		super();
+		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.email = email;
 	}
@@ -38,6 +39,12 @@ public class Cliente {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre
+				+ ", email=" + email + "]";
 	}
 
 

@@ -1,0 +1,8 @@
+package config;
+
+public class Config {
+	static final String ORALCE = "factories.";
+
+	static final String MYSQL = "dao.SqlFactory";
+
+}

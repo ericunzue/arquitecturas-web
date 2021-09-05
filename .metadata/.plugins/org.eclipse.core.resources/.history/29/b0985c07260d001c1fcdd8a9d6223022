@@ -1,0 +1,59 @@
+package dao;
+
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import connection.MySqlConnection;
+import daoInterface.FacturaDao;
+import pojo.Factura;
+
+public class MySqlImplFacturaDao implements FacturaDao{
+
+	private Connection conn = MySqlConnection.getConnection();
+
+	public  MySqlImplFacturaDao() {
+		createTable();
+	}
+
+
+	private void createTable() {
+
+		String create = "CREATE TABLE IF NOT EXISTS factura (" + "idFactura INT NOT NULL AUTO_INCREMENT,"+ "idCliente INT NOT NULL," + "PRIMARY KEY (idFactura))" +
+		"ALTER TABLE factura ADD CONSTRAINT factura_cliente FOREING KEY factura_cliente (idCliente) REFERENCES cliente(idCliente)";
+		try {
+			conn.prepareStatement(create).execute();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+
+
+	@Override
+	public void create(Factura entities) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Factura get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Factura> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

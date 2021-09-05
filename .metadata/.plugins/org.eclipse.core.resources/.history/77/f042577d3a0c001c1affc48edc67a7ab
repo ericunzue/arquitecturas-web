@@ -1,0 +1,7 @@
+package daoInterface;
+
+import entities.Cliente;
+
+public interface InClienteDao extends InCrudDao<Cliente> {
+
+}

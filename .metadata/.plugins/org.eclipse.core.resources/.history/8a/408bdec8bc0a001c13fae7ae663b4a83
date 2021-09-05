@@ -1,0 +1,11 @@
+package com.axample.dao;
+
+public interface DireccionDAOInterface {
+
+    void create(Direccion d);
+    Direccion get(int id);
+    void update(int id, String nombre, String apellido, int edad);
+    void delete(int id);
+
+
+}

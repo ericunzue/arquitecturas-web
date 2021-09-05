@@ -1,0 +1,67 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+
+import connection.MySqlConnection;
+import daoInterface.ProductoDao;
+import pojo.Producto;
+
+public class MySqlImplProductoDao implements ProductoDao {
+
+	Connection conn = MySqlConnection.getConnection();
+
+
+	public MySqlImplProductoDao() {
+		super();
+		createTable();
+	}
+
+	private void createTable() {
+
+		String sql = "CREATE TABLE IF NOT EXISTS cliente(" + "id INT NOT NULL AUTO_INCREMENT,"
+				+ "nombre VARCHAR(500)," + "email VARCHAR(500)," + "PRIMARY KEY (id))";
+
+		try {
+			conn.prepareStatement(sql).execute();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+	@Override
+	public void create(Producto entities) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Producto get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Producto> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Producto getProductHighestCollection() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

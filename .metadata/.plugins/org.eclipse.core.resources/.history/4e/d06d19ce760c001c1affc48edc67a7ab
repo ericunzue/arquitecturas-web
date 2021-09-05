@@ -1,0 +1,18 @@
+import java.sql.SQLException;
+
+
+import config.Config;
+import entities.Cliente;
+import factory.Factory;
+
+public class Main {
+	public static void main(String[] args) throws SQLException {
+
+		Cliente c1 = new Cliente("José", "Gonzalez");
+
+		Factory.getInstance(Factory.DERBY_JDBC);
+
+
+	}
+
+}

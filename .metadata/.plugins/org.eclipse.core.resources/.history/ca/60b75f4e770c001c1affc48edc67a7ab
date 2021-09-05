@@ -1,0 +1,45 @@
+package factory;
+
+import java.lang.reflect.InvocationTargetException;
+
+import daoInterface.InClienteDao;
+import daoInterface.InFacturaDao;
+import daoInterface.InProductoDao;
+
+public abstract class Factory {
+
+	public static final String MYSQL = "factory.SqlFactory";
+	public static final String DERBY_JDBC = "nada";
+	public static final String JPA_HIBERNATE = "nada";
+	public static Factory getInstance(String className) {
+
+		Factory dao = null;
+		try {
+			dao = (Factory) Class.forName(className).getDeclaredConstructor().newInstance();
+		} catch (InstantiationException | IllegalAccessException
+				| IllegalArgumentException | InvocationTargetException
+				| NoSuchMethodException | SecurityException
+				| ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();;
+		}
+
+		return dao;
+
+	}
+
+	//	public static Factory getInstance(int whichFactory) {
+	//		switch (whichFactory) {
+	//		case MYSQL_JDBC : return new SqlFactory();
+	//
+	//		case DERBY_JDBC: return null;
+	//
+	//		default: return null;
+	//		}
+	//
+	//	}
+
+	public abstract InClienteDao getClienteDao();
+	public abstract InFacturaDao getFacturaDao();
+	public abstract InProductoDao getProducotDao();
+}

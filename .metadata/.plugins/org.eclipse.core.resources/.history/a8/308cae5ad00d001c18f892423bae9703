@@ -1,0 +1,8 @@
+package daoInterface;
+
+import pojo.FacturaProducto;
+
+public interface FacturaProductoDao extends CrudDao<FacturaProducto>{
+	private createTable();
+
+}

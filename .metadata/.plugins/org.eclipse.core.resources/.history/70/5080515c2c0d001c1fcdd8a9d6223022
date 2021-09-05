@@ -1,0 +1,25 @@
+import java.sql.SQLException;
+
+import daoInterface.ClienteDao;
+import daoInterface.FacturaDao;
+import factory.Factory;
+
+import pojo.Cliente;
+
+public class Main {
+	public static void main(String[] args) throws SQLException {
+
+		Cliente c1 = new Cliente("José", "Gonzalez");
+
+		ClienteDao clienteDao =   Factory.getConcreteFactory(Factory.MYSQL).getClienteDao();
+		FacturaDao facturaDao =   Factory.getConcreteFactory(Factory.MYSQL).getFacturaDao();
+		clienteDao.delete(18);
+
+
+
+
+
+
+	}
+
+}

@@ -8,4 +8,6 @@ public interface ProductoDao extends CrudDao<Producto> {
 
 	Producto getProductHighestCollection() throws SQLException;
 
+	void createProductos();
+
 }

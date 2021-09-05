@@ -1,0 +1,138 @@
+package com.axample.dao;
+
+import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class DireccionDAO implements DireccionDAOInterface {
+
+    private String driver = "com.mysql.cj.jdbc.Driver";
+    private Connection conn;
+
+    public DireccionDAO() {
+
+	try {
+	    Class.forName(driver).getDeclaredConstructor().newInstance();
+	} catch (InstantiationException | IllegalAccessException | IllegalArgumentException
+		| InvocationTargetException | NoSuchMethodException | SecurityException
+		| ClassNotFoundException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	createTable();
+
+    }
+
+    private void createTable() {
+	String sql = "CREATE TABLE IF NOT EXISTS direccion(" + "id INT NOT NULL AUTO_INCREMENT,"
+		+ "calle VARCHAR(500)," + "altura INT," + "PRIMARY KEY (id))";
+	this.conn = getConnection();
+
+	try {
+	    this.conn.prepareStatement(sql).execute();
+	    this.conn.commit();
+	    this.conn.close();
+	} catch (SQLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+    }
+
+    public int create(Direccion dir) {
+	String sql = "INSERT INTO direccion (calle, altura) VALUES (?,?)";
+	int id =0;
+	try {
+	    this.conn = getConnection();
+	    PreparedStatement ps = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
+	    ps.setString(1, dir.getCalle());
+	    ps.setInt(2, dir.getAltura());
+	    ps.executeUpdate();
+
+	    ResultSet rs=ps.getGeneratedKeys();
+	    if(rs.next()){
+		id=rs.getInt(1);
+	    }
+
+	    ps.close();
+	    this.conn.commit();
+	    this.conn.close();
+
+	} catch (Exception e) {
+	    // TODO: handle exception
+	}
+
+	System.out.println("Insert direction successfull");
+	return id;
+    }
+
+    public Direccion get(int id) {
+	Direccion dir = new Direccion();
+	String sql = "SELECT * FROM direccion WHERE id=" + id;
+	try {
+	    this.conn = getConnection();
+	    PreparedStatement ps = conn.prepareStatement(sql);
+	    ResultSet rs = ps.executeQuery();
+	    while (rs.next()) {
+		dir.setCalle(rs.getString(2));
+		dir.setAltura(rs.getInt(3));
+	    }
+	    this.conn.close();
+	} catch (Exception e) {
+	    System.out.println("Get direccion error");
+	}
+
+	return dir;
+
+    }
+
+    @Override
+    public void update(int id, String nombre, String apellido, int edad) {
+	// TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void delete(int id) {
+	// TODO Auto-generated method stub
+
+    }
+
+
+    private Connection getConnection() {
+
+	String uri = "jdbc:mysql://localhost:3306/demo2";
+
+	try {
+	    this.conn = DriverManager.getConnection(uri,"root","1234");
+	    this.conn.setAutoCommit(false);
+	} catch (SQLException e) {
+
+	    System.out.println(e.getMessage() + " Get Connection");
+	}
+	return this.conn;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

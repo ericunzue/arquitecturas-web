@@ -1,0 +1,28 @@
+package factories;
+
+import daoInterface.InClienteDao;
+import daoInterface.InFacturaDao;
+import daoInterface.InProductoDao;
+
+public abstract class Factory {
+
+	public static final int MYSQL_JDBC = 1;
+	public static final int DERBY_JDBC = 2;
+	public static final int JPA_HIBERNATE = 3;
+
+	public static Factory getInstance(int whichFactory) {
+		switch (whichFactory) {
+		case MYSQL_JDBC : return new SqlFactory();
+		break;
+		case DERBY_JDBC: return null;
+		default: return null;
+		}
+
+
+
+	}
+
+	abstract InClienteDao getClienteDao();
+	abstract InFacturaDao getFacturaDao();
+	abstract InProductoDao getProducotDao();
+}

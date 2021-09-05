@@ -1,0 +1,37 @@
+package dao.clienteDao;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import daoInterface.InCrudDao;
+import pojo.Cliente;
+
+public class SqlClienteDao implements InCrudDao<Cliente> {
+
+
+
+	@Override
+	public void create(Cliente entidades) throws SQLException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean delete(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Cliente get(int id) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Cliente> getAll() throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

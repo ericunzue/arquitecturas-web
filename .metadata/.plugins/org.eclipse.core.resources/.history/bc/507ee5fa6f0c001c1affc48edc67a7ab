@@ -1,0 +1,30 @@
+package factories;
+
+import dao.SqlClienteDao;
+import daoInterface.InClienteDao;
+import daoInterface.InFacturaDao;
+
+public class SqlDaoFactory extends DaoFactory {
+
+	@Override
+	public InClienteDao getClienteDao() {
+		// TODO Auto-generated method stub
+		return new SqlClienteDao();
+	}
+
+	@Override
+	InFacturaDao getFacturaDao() {
+		// TODO Auto-generated method stub
+		return new InFacturaDao();
+	}
+
+	@Override
+	InFacturaDao getProducotDao() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+}

@@ -1,0 +1,48 @@
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLException;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
+import org.apache.commons.csv.CSVRecord;
+
+import daoInterface.ClienteDao;
+import daoInterface.FacturaDao;
+import factory.Factory;
+
+import pojo.Cliente;
+
+public class Main {
+	@SuppressWarnings("deprecation")
+	public static void main(String[] args) throws SQLException {
+
+		Cliente c1 = new Cliente("José", "Gonzalez");
+
+		ClienteDao clienteDao =   Factory.getConcreteFactory(Factory.MYSQL).getClienteDao();
+		FacturaDao facturaDao =   Factory.getConcreteFactory(Factory.MYSQL).getFacturaDao();
+		ProductoDao productoDao =   Factory.getConcreteFactory(Factory.MYSQL).getProductoDao();
+
+		System.out.println(clienteDao.delete(34));
+
+//		CSVParser parser = null;
+//		try {
+//			parser = CSVFormat.DEFAULT.withHeader().parse(new
+//
+//					FileReader("productos.csv"));
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//				for(CSVRecord row: parser) {
+//				System.out.println(row.get("idProducto"));
+//				System.out.println(row.get("nombre"));
+//				System.out.println(row.get("valor"));
+//				}
+
+
+
+
+	}
+
+}
