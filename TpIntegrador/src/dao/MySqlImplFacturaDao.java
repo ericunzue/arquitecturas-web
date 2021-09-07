@@ -15,7 +15,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import connection.MySqlConnection;
-import daoInterface.ClienteDao;
+
 import daoInterface.FacturaDao;
 import pojo.Cliente;
 import pojo.Factura;
@@ -34,8 +34,8 @@ public class MySqlImplFacturaDao implements FacturaDao{
 
 	private void createTable() {
 
-		String create = "CREATE TABLE IF NOT EXISTS factura (idFactura INT NOT NULL,"
-				+ "idCliente INT NOT NULL,"
+		String create = "CREATE TABLE IF NOT EXISTS factura (idFactura INT (11),"
+				+ "idCliente INT (11),"
 				+ "PRIMARY KEY (idFactura),"
 				+ "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente))";
 		try {
@@ -50,6 +50,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 
 	@Override
 	public void create(Factura factura) throws SQLException  {
+		//Trae el cliente para saber si existe en la BBDD
 		Cliente c = new MySqlImplClienteDao().get(factura.getIdCliente());
 
 		if (c!=null) {

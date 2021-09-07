@@ -16,7 +16,7 @@ import org.apache.commons.csv.CSVRecord;
 import connection.MySqlConnection;
 import daoInterface.ClienteDao;
 import pojo.Cliente;
-import pojo.Producto;
+
 
 public class MySqlImplClienteDao implements ClienteDao{
 
@@ -30,7 +30,7 @@ public class MySqlImplClienteDao implements ClienteDao{
 
 	private void createTable() {
 
-		String sql = "CREATE TABLE IF NOT EXISTS cliente(" + "idCliente INT NOT NULL,"
+		String sql = "CREATE TABLE IF NOT EXISTS cliente(" + "idCliente INT(11),"
 				+ "nombre VARCHAR(500)," + "email VARCHAR(500)," + "PRIMARY KEY (idCliente))";
 
 		try {
@@ -162,7 +162,11 @@ public class MySqlImplClienteDao implements ClienteDao{
 	public List<Cliente> getClientByBilling() throws SQLException {
 		//HACER
 		List <Cliente> listaClientes = new ArrayList<Cliente>();
-		String sql = "SELECT * FROM cliente";
+		String sql = "SELECT c.idCliente, c.nombre, c.email, SUM(fp.cantidad) as cantidad, SUM(fp.cantidad)*p.valor AS total "
+				+ "FROM cliente c "
+				+ "JOIN factura f ON (c.idCliente = f.idCliente) "
+				+ "JOIN facturaProducto fp ON f.idFactura = fp.idFactura "
+				+ "JOIN producto p ON fp.idProducto = p.idProducto GROUP BY c.idCliente ORDER BY total DESC";
 
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -173,7 +177,9 @@ public class MySqlImplClienteDao implements ClienteDao{
 				c.setIdCliente(rs.getInt(1));
 				c.setNombre(rs.getString(2));
 				c.setEmail(rs.getString(3));
+				c.setTotal(rs.getDouble(4));
 				listaClientes.add(c);
+
 			}
 		}catch(Exception e) {
 			e.printStackTrace();

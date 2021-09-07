@@ -25,7 +25,7 @@ public class MySqlImplProductoDao implements ProductoDao {
 	public MySqlImplProductoDao() {
 		super();
 		this.createTable();
-//		this.createProductos();
+		//		this.createProductos();
 	}
 
 
@@ -54,8 +54,8 @@ public class MySqlImplProductoDao implements ProductoDao {
 
 	private void createTable() {
 
-		String sql = "CREATE TABLE IF NOT EXISTS producto(" + "idProducto INT NOT NULL,"
-				+ "nombre VARCHAR(500)," + "valor FLOAT(6)," + "PRIMARY KEY (idProducto))";
+		String sql = "CREATE TABLE IF NOT EXISTS producto(" + "idProducto INT (11),"
+				+ "nombre VARCHAR(500)," + "valor FLOAT(11)," + "PRIMARY KEY (idProducto))";
 
 		try {
 			conn.prepareStatement(sql).execute();
@@ -153,8 +153,25 @@ public class MySqlImplProductoDao implements ProductoDao {
 
 	@Override
 	public Producto getProductHighestCollection() throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		Producto p = new Producto();
+
+		String sql = "SELECT p.idProducto, p.nombre, p.valor ,sum((fp.cantidad*p.valor)) AS facturado \n"
+				+ "FROM facturaProducto fp\n"
+				+ "INNER JOIN producto p on (fp.idProducto=p.idProducto)";
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				p.setIdProducto(rs.getInt(1));
+				p.setNombre(rs.getString(2));
+				p.setValor(rs.getFloat(3));
+				p.setTotalFacturado(rs.getFloat(4));
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return p;
 	}
 
 }

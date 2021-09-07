@@ -5,6 +5,7 @@ public class Producto {
 	private int idProducto;
 	private String nombre;
 	private float valor;
+	private float totalFacturado;
 
 	public Producto() {
 		super();
@@ -15,6 +16,7 @@ public class Producto {
 		this.idProducto = idProducto;
 		this.nombre = nombre;
 		this.valor = valor;
+		this.totalFacturado=0;
 	}
 
 	public int getIdProducto() {
@@ -41,11 +43,23 @@ public class Producto {
 		this.valor = valor;
 	}
 
+
+
+	public float getTotalFacturado() {
+		return totalFacturado;
+	}
+
+	public void setTotalFacturado(float totalFacturado) {
+		this.totalFacturado = totalFacturado;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [idProducto=" + idProducto + ", nombre=" + nombre
-				+ ", valor=" + valor + "]";
+				+ ", valor=" + valor + ", totalFacturado=" + totalFacturado + "]";
 	}
+
+
 
 
 

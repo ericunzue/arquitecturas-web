@@ -5,6 +5,7 @@ public class Cliente {
 	private int idCliente;
 	private String nombre;
 	private String email;
+	private double total;
 
 	public Cliente() {
 		super();
@@ -15,6 +16,7 @@ public class Cliente {
 		this.idCliente = idCliente;
 		this.nombre = nombre;
 		this.email = email;
+		this.total = 0;
 	}
 
 	public int getIdCliente() {
@@ -41,11 +43,22 @@ public class Cliente {
 		this.email = email;
 	}
 
+
+
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+
 	@Override
 	public String toString() {
 		return "Cliente [idCliente=" + idCliente + ", nombre=" + nombre
-				+ ", email=" + email + "]";
+				+ ", email=" + email + ", total=" + total + "]";
 	}
+
 
 
 

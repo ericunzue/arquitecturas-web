@@ -20,6 +20,13 @@ public class Main {
 //		Factura fac1 = new Factura(1, 2);
 //		facturaDao.create(fac1);
 //		productoDao.createProductos();
+//		clienteDao.createClientes();
+//		facturaDao.createFacturas();
+//		facturaProductoDao.createFacturasProductos();
+
+		System.out.println(clienteDao.getClientByBilling());
+		System.out.println(productoDao.getProductHighestCollection());
+
 
 
 

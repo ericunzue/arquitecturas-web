@@ -9,4 +9,6 @@ public interface ClienteDao extends CrudDao<Cliente> {
 
 	List<Cliente> getClientByBilling() throws SQLException;
 
+	void createClientes()throws SQLException;
+
 }
