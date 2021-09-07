@@ -23,11 +23,11 @@ public class MySqlImplFacturaProductoDao implements FacturaProductoDao {
 	Connection conn = MySqlConnection.getConnection();
 
 	public MySqlImplFacturaProductoDao() {
-		this.createTable();
+
 
 	}
 
-	private void createTable() {
+	public void initializer() {
 		String create = "CREATE TABLE IF NOT EXISTS facturaProducto (idFactura INT (11),"
 				+ "idProducto INT (11),"
 				+ "cantidad INT (11),"
@@ -57,7 +57,6 @@ public class MySqlImplFacturaProductoDao implements FacturaProductoDao {
 		    ps.executeUpdate();
 		    ps.close();
 		    conn.commit();
-		    System.out.println("Insert FacturaProducto successfull");
 
 		} catch (Exception e) {
 		   e.printStackTrace();
@@ -96,7 +95,7 @@ public class MySqlImplFacturaProductoDao implements FacturaProductoDao {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void createFacturasProductos() throws SQLException {
+	public void fillBillsProducts() throws SQLException {
 		CSVParser parser;
 
 		try {

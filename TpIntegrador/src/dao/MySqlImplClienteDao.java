@@ -24,14 +24,16 @@ public class MySqlImplClienteDao implements ClienteDao{
 
 
 	public MySqlImplClienteDao() {
-		createTable();
-//		createClientes();
+
 	}
 
-	private void createTable() {
+	public void initializer() {
 
-		String sql = "CREATE TABLE IF NOT EXISTS cliente(" + "idCliente INT(11),"
-				+ "nombre VARCHAR(500)," + "email VARCHAR(500)," + "PRIMARY KEY (idCliente))";
+		final String sql = "CREATE TABLE IF NOT EXISTS cliente("
+				+ "idCliente INT(11),"
+				+ "nombre VARCHAR(500),"
+				+ "email VARCHAR(500),"
+				+ "PRIMARY KEY (idCliente))";
 
 		try {
 			conn.prepareStatement(sql).execute();
@@ -45,7 +47,7 @@ public class MySqlImplClienteDao implements ClienteDao{
 
 
 	@SuppressWarnings("deprecation")
-	public void createClientes() {
+	public void fillCustomers() {
 		CSVParser parser;
 
 		try {
@@ -186,5 +188,7 @@ public class MySqlImplClienteDao implements ClienteDao{
 		}
 		return listaClientes;
 	}
+
+
 
 }

@@ -26,18 +26,17 @@ public class MySqlImplFacturaDao implements FacturaDao{
 	private Connection conn = MySqlConnection.getConnection();
 
 	public  MySqlImplFacturaDao() {
-		this.createTable();
-		//		this.createFacturas();
 
 	}
 
 
-	private void createTable() {
+	public void initializer() {
 
 		String create = "CREATE TABLE IF NOT EXISTS factura (idFactura INT (11),"
 				+ "idCliente INT (11),"
 				+ "PRIMARY KEY (idFactura),"
 				+ "FOREIGN KEY (idCliente) REFERENCES cliente (idCliente))";
+
 		try {
 			conn.prepareStatement(create).execute();
 
@@ -71,7 +70,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 
 
 	@SuppressWarnings("deprecation")
-	public void createFacturas() throws SQLException {
+	public void fillBills() throws SQLException {
 		CSVParser parser;
 
 		try {
@@ -106,9 +105,9 @@ public class MySqlImplFacturaDao implements FacturaDao{
 		Factura f = this.get(idCliente);
 
 		if ((c!=null) && (f!=null)) {
+
 			String sql = "DELETE FROM factura WHERE idFactura=? AND idCliente=?";
 			PreparedStatement ps;
-
 
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, idFactura);
@@ -123,7 +122,6 @@ public class MySqlImplFacturaDao implements FacturaDao{
 		}
 
 		return response!=0;
-
 	}
 
 
@@ -133,6 +131,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 		String sql = "SELECT * FROM factura WHERE idFactura=?";
 
 		try {
+
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -141,7 +140,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 				f.setIdFactura(rs.getInt(1));
 				f.setIdCliente(rs.getInt(2));
 			}
-			conn.commit();
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -152,6 +151,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 
 	@Override
 	public List<Factura> getAll() throws SQLException {
+
 		List <Factura> listaFacturas = new ArrayList<Factura>();
 		String sql = "SELECT * FROM factura";
 
@@ -165,6 +165,7 @@ public class MySqlImplFacturaDao implements FacturaDao{
 				f.setIdCliente(rs.getInt(2));
 				listaFacturas.add(f);
 			}
+
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

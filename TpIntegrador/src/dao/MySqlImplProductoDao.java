@@ -23,14 +23,12 @@ public class MySqlImplProductoDao implements ProductoDao {
 
 
 	public MySqlImplProductoDao() {
-		super();
-		this.createTable();
-		//		this.createProductos();
+
 	}
 
 
 	@SuppressWarnings("deprecation")
-	public void createProductos() {
+	public void fillProducts() {
 		CSVParser parser;
 
 		try {
@@ -52,10 +50,13 @@ public class MySqlImplProductoDao implements ProductoDao {
 	}
 
 
-	private void createTable() {
+	public void initializer() {
 
-		String sql = "CREATE TABLE IF NOT EXISTS producto(" + "idProducto INT (11),"
-				+ "nombre VARCHAR(500)," + "valor FLOAT(11)," + "PRIMARY KEY (idProducto))";
+		String sql = "CREATE TABLE IF NOT EXISTS producto("
+				+ "idProducto INT (11),"
+				+ "nombre VARCHAR(500),"
+				+ "valor FLOAT(11),"
+				+ "PRIMARY KEY (idProducto))";
 
 		try {
 			conn.prepareStatement(sql).execute();
@@ -152,7 +153,7 @@ public class MySqlImplProductoDao implements ProductoDao {
 	}
 
 	@Override
-	public Producto getProductHighestCollection() throws SQLException {
+	public Producto topBillingProduct() throws SQLException {
 		Producto p = new Producto();
 
 		String sql = "SELECT p.idProducto, p.nombre, p.valor ,sum((fp.cantidad*p.valor)) AS facturado \n"
@@ -173,5 +174,8 @@ public class MySqlImplProductoDao implements ProductoDao {
 		}
 		return p;
 	}
+
+
+
 
 }

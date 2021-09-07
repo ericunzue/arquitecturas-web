@@ -8,6 +8,8 @@ public interface CrudDao<T> {
 	boolean delete(int id) throws SQLException;
 	T get(int id) throws SQLException;
 	List<T> getAll() throws SQLException;
+	void initializer();
+
 
 
 }

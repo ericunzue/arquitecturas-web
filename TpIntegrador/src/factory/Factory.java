@@ -1,14 +1,12 @@
 package factory;
 
 import java.lang.reflect.InvocationTargetException;
-
 import daoInterface.ClienteDao;
 import daoInterface.FacturaDao;
 import daoInterface.FacturaProductoDao;
 import daoInterface.ProductoDao;
 
 public abstract class Factory {
-
 	public static final String MYSQL = "factory.MySqlFactory";
 	public static final String DERBY_JDBC = "Derby_JDBC_Sin_Implementar";
 	public static final String JPA_HIBERNATE = "Jpa_Hibernate_Sin_Implementar";
@@ -25,6 +23,7 @@ public abstract class Factory {
 				| ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+
 
 		return dao;
 

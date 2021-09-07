@@ -6,8 +6,8 @@ import pojo.Producto;
 
 public interface ProductoDao extends CrudDao<Producto> {
 
-	Producto getProductHighestCollection() throws SQLException;
+	Producto topBillingProduct() throws SQLException;
 
-	void createProductos();
+	void fillProducts();
 
 }
